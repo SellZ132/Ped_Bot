@@ -1,0 +1,5 @@
+discord.py
+flask
+openai
+aiohttp
+beautifulsoup4
