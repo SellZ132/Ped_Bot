@@ -13,14 +13,14 @@ import os
 import json
 from datetime import datetime
 
-TOKEN = 'TOKEN_ID'
-MY_GUILD_ID = 1453019319989436429
+TOKEN = os.getenv("TOKEN_ID")
+MY_GUILD_ID = int(os.getenv("MY_GUILD_ID"))
 
-ALLOWED_USERS = [1472874358815981751,1380546087898583150,1440816850593382554,1466655707347554529]
+ALLOWED_USERS = [int(user_id) for user_id in os.getenv("ALLOWED_USERS").split(",")]
 
-AI_CHANNEL_ID = 1486801910433448007
-ASTD_CHANNEL_ID = None
-astd_message_id = None
+AI_CHANNEL_ID = int(os.getenv("AI_CHANNEL_ID"))
+ASTD_CHANNEL_ID = int(os.getenv("ASTD_CHANNEL_ID")) if os.getenv("ASTD_CHANNEL_ID") else None
+astd_message_id = int(os.getenv("ASTD_MESSAGE_ID")) if os.getenv("ASTD_MESSAGE_ID") else None
 
 CONFIG_FILE = "config.json"
 
