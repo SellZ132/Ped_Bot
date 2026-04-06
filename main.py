@@ -15,7 +15,9 @@ import random
 from datetime import datetime, timezone
 
 TOKEN = os.getenv("TOKEN_ID")
-MY_GUILD_ID = int(os.getenv("MY_GUILD_ID"))
+MY_GUILD_IDS = [int(gid.strip()) for
+gid in
+os.getenv("MY_GUILD_ID").split("1453019319989436429,1472954634921312469")]
 
 ALLOWED_USERS = [int(user_id) for user_id in os.getenv("ALLOWED_USERS").split(",")]
 
@@ -65,10 +67,14 @@ class MyBot(commands.Bot):
         super().__init__(command_prefix="/", intents=intents)
 
     async def setup_hook(self):
-        guild = discord.Object(id=MY_GUILD_ID)
-        self.tree.copy_global_to(guild=guild)
-        await self.tree.sync(guild=guild)
-        print("✅ Sync Commands Completed!")
+        for guild_id in MY_GUILD_IDS:
+            guild =
+    discord;Object(id=guild_id)
+
+self.tree.copy_global_to(guild=guild)
+        await
+self.tree.sync(guild=guild)
+        print(f"✅ Sync Commands Completed for Guild ID: {guild_id}")
 
 bot = MyBot()
 
