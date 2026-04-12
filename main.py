@@ -78,10 +78,12 @@ def home():
     return "I am alive!"
 
 def run_web():
-    app.run(host='0.0.0.0', port=8080)
+    port = int(os.environ.get("PORT", 8080))
+    app.run(host="0.0.0.0", port=port)
 
 def keep_alive():
     t = Thread(target=run_web)
+    t.daemon = True
     t.start()
 
 @bot.event
@@ -919,6 +921,7 @@ if __name__ == "__main__":
     import time
     while True:
         try:
+            keep_alive()
             bot.run(TOKEN)
         except discord.errors.HTTPException as e:
             if e.status == 429:
